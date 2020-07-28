@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,4 +67,18 @@ public class TodoController {
 			e.printStackTrace();
 		}
     }
+	
+	@DeleteMapping("/{id}/delete")
+	public ResponseEntity<Void> deleteTodoById(@PathVariable("id") Integer id) {
+		ResponseEntity<Void> response;
+		System.out.println("provato il richiamo del delete!");
+		try {
+			todoService.deleteTodoById(id);
+			response = new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return response;
+	}
+
 }

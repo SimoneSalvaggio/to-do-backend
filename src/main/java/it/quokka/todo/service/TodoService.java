@@ -44,6 +44,10 @@ public class TodoService {
 		return ms;
 	}
 
+	public void deleteTodoById(Integer id) {
+		todoRepository.deleteById(id);
+	}
+
 //	public TodoDTO getTodoByTagId(Integer tagId) {
 //		Todo opt = todoRepository.findByTagId(tagId);
 //		TodoDTO todo = todoMapper.toDto(opt);
